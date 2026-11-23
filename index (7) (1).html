@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qxz Store – AI Reels Bundles Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff8f1;--surface:#ffffff;--text:#1f1612;--muted:#6f625a;--accent:#e8590c;--accent2:#f59f00;--border:#f0e1d3;--shadow:0 6px 24px rgba(120,60,10,.10);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16110e;--surface:#211a16;--text:#f6ece4;--muted:#b3a499;--border:#34291f;--shadow:0 6px 24px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#16110e;--surface:#211a16;--text:#f6ece4;--muted:#b3a499;--border:#34291f;--shadow:0 6px 24px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:30}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.3px}.logo span{color:var(--accent)}
+.nav nav{display:flex;gap:22px;font-size:.92rem;font-weight:500;color:var(--muted)}
+.nav nav a:hover{color:var(--accent)}
+.cartbtn{display:flex;align-items:center;gap:8px;background:var(--text);color:var(--bg);border:0;border-radius:999px;padding:9px 16px;font:600 .9rem inherit;font-family:inherit;cursor:pointer}
+.cartbtn b{background:var(--accent);color:#fff;border-radius:999px;min-width:22px;padding:0 6px;font-size:.78rem;text-align:center}
+.hero{padding:56px 0 40px;text-align:center}
+.pill{display:inline-block;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);font-weight:600;font-size:.82rem;padding:6px 14px;border-radius:999px}
+.hero h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.12;margin:16px auto 14px;max-width:760px;font-weight:800;letter-spacing:-1px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:560px;margin:0 auto 26px;color:var(--muted)}
+.btn{display:inline-block;background:linear-gradient(90deg,var(--accent),#f76707);color:#fff;border:0;border-radius:12px;padding:13px 26px;font-weight:600;font-family:inherit;font-size:.95rem;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--text);border:1.5px solid var(--border);margin-left:8px}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:34px 0 8px}
+.trust div{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;font-size:.88rem;font-weight:500}
+section{padding:36px 0}
+h2{font-size:1.7rem;margin:0 0 6px;letter-spacing:-.5px}
+.sub{color:var(--muted);margin:0 0 20px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{border:1.5px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:7px 16px;font:500 .86rem inherit;font-family:inherit;cursor:pointer}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.cover{position:relative;aspect-ratio:1/1;display:grid;place-items:center;font-size:4.2rem}
+.off{position:absolute;top:10px;left:10px;background:#fff;color:#c92a2a;font-weight:700;font-size:.74rem;padding:3px 9px;border-radius:999px}
+.cnt{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.55);color:#fff;font-size:.74rem;padding:3px 10px;border-radius:999px}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cat{font-size:.74rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.body h3{margin:0;font-size:1rem;line-height:1.35}
+.body p{margin:0;font-size:.84rem;color:var(--muted)}
+.price{margin-top:auto;padding-top:8px;display:flex;align-items:baseline;gap:8px}
+.price b{font-size:1.3rem}.price s{color:var(--muted);font-size:.9rem}
+.row{display:flex;gap:8px;margin-top:8px}
+.row button{flex:1;border-radius:10px;padding:9px 6px;font:600 .84rem inherit;font-family:inherit;cursor:pointer;border:1.5px solid var(--accent);background:transparent;color:var(--accent)}
+.row button.buy{background:var(--accent);color:#fff}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px}
+.step i{font-style:normal;font-size:1.8rem}.step h3{margin:8px 0 4px;font-size:1rem}.step p{margin:0;color:var(--muted);font-size:.88rem}
+details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}details p{margin:8px 0 0;color:var(--muted);font-size:.92rem}
+footer{border-top:1px solid var(--border);margin-top:30px;padding:28px 0;color:var(--muted);font-size:.86rem;text-align:center}
+.shade{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+.shade.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--surface);z-index:50;transform:translateX(100%);transition:.25s;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 16px) 18px calc(env(safe-area-inset-bottom,0px) + 16px)}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.dh h3{margin:0}
+.x{background:none;border:0;font-size:1.6rem;color:var(--text);cursor:pointer}
+.items{flex:1;overflow-y:auto}
+.it{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.it .th{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-size:1.6rem;flex:none}
+.it div{flex:1;font-size:.88rem;font-weight:500}.it small{display:block;color:var(--muted)}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem;padding:14px 0}
+.btn.full{width:100%;text-align:center}
+[hidden]{display:none!important}
+.card[data-go]{cursor:pointer;transition:transform .15s}.card[data-go]:hover{transform:translateY(-3px)}
+.back{display:inline-block;margin:22px 0 14px;color:var(--muted);font-weight:500;font-size:.9rem}.back:hover{color:var(--accent)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.mainpic{border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.pic{width:100%;aspect-ratio:1;display:grid;place-items:center;overflow:hidden;container-type:size;color:#fff;text-align:center}
+.big{font-size:52cqw;line-height:1}
+.mos{display:grid;grid-template-columns:repeat(3,1fr);gap:3cqw;font-size:20cqw;line-height:1.1}
+.info{font-size:5.4cqw;font-weight:600;line-height:1.7}.info b{display:block;font-size:12cqw;line-height:1.2;margin-bottom:2cqw}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.th2{width:84px;padding:0;border:2.5px solid transparent;border-radius:14px;overflow:hidden;cursor:pointer;background:none}.th2.on{border-color:var(--accent)}.th2 .pic{pointer-events:none}
+.pinfo h1{font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.2;margin:8px 0 10px;letter-spacing:-.5px}
+.pinfo>p{color:var(--muted);margin:0 0 16px}
+.pinfo ul{list-style:none;padding:0;margin:16px 0;display:grid;gap:6px;font-size:.92rem}
+.pinfo .price b{font-size:2rem}.pinfo .row button{padding:13px 8px;font-size:.95rem}
+.vwrap{display:flex;justify-content:center;margin:6px 0 10px}
+.vwrap video,.reel{width:min(300px,100%);aspect-ratio:9/16;border-radius:24px;border:6px solid var(--text);background:#000;overflow:hidden;box-shadow:var(--shadow)}
+.reel{position:relative;display:grid;place-items:center;color:#fff}
+.reel::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--g1),var(--g2));animation:pulse 4s ease-in-out infinite alternate}
+.reel>*{position:relative;z-index:1}
+.reel .big{font-size:96px;animation:fl 2.4s ease-in-out infinite}
+.reel .bar{position:absolute;left:14px;right:14px;bottom:16px;height:4px;border-radius:4px;background:rgba(255,255,255,.3);overflow:hidden}
+.reel .bar i{display:block;height:100%;background:#fff;animation:prog 8s linear infinite}
+.reel .pl{position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:1rem;cursor:pointer}
+.reel .tag{position:absolute;left:14px;top:18px;font-size:.78rem;font-weight:600;background:rgba(0,0,0,.4);padding:3px 10px;border-radius:999px}
+.reel.paused *,.reel.paused::before{animation-play-state:paused}
+@keyframes fl{50%{transform:translateY(-14px) scale(1.08) rotate(4deg)}}
+@keyframes pulse{to{filter:hue-rotate(25deg) brightness(1.15)}}
+@keyframes prog{from{width:0}to{width:100%}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes bump{50%{transform:scale(1.35)}}
+#top{overflow-x:clip}
+.hero{position:relative;isolation:isolate;padding:64px 0 44px}
+.hero::before{content:"";position:absolute;inset:0 -100vw;z-index:-1;background:radial-gradient(520px 260px at calc(50% - 320px) 0,color-mix(in srgb,var(--accent) 20%,transparent),transparent),radial-gradient(480px 260px at calc(50% + 300px) 10%,color-mix(in srgb,var(--accent2) 24%,transparent),transparent)}
+.btn{box-shadow:0 8px 20px color-mix(in srgb,var(--accent) 32%,transparent);transition:transform .15s}.btn:hover{transform:translateY(-2px)}
+h2{position:relative;padding-left:14px}h2::before{content:"";position:absolute;left:0;top:.22em;bottom:.22em;width:5px;border-radius:5px;background:linear-gradient(var(--accent),var(--accent2))}
+.card{border-radius:20px;transition:transform .2s,box-shadow .2s;animation:up .45s ease both}
+.card[data-go]:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(120,60,10,.18)}
+.card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.cover{overflow:hidden;font-size:4.6rem;text-shadow:0 8px 18px rgba(0,0,0,.25);transition:font-size .25s}
+.card:hover .cover{font-size:5.1rem}
+.cover::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 28% 18%,rgba(255,255,255,.38),transparent 55%);pointer-events:none}
+.price b{font-size:1.35rem}
+.back{background:var(--surface);border:1px solid var(--border);padding:7px 14px;border-radius:999px}
+.pgrid{gap:40px}
+.mainpic{border-radius:24px;border:1px solid var(--border)}
+.th2{width:92px;border-radius:16px;transition:transform .15s}.th2:hover{transform:translateY(-2px)}
+.pinfo{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.pinfo ul{grid-template-columns:1fr 1fr;gap:8px}
+.pinfo li{background:var(--bg);border-radius:10px;padding:8px 10px;font-size:.84rem;font-weight:500}
+.pinfo .price .pill{margin-left:auto}
+.pinfo .row button{border-radius:12px}
+.pinfo .buybtn{display:block;width:100%;margin:14px 0 4px;padding:15px;font-size:1rem;text-align:center}
+.vwrap{padding:24px 0;background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 16%,transparent),transparent)}
+#cnt.bump{animation:bump .3s}
+.drawer{visibility:hidden;transition:transform .25s,visibility .25s;border-radius:20px 0 0 20px}.drawer.on{visibility:visible}
+.shade{backdrop-filter:blur(2px)}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 84px);transform:translate(-50%,16px);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:.88rem;font-weight:500;opacity:0;pointer-events:none;transition:.25s;z-index:60;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.sbar{display:none}
+@media(max-width:760px){
+ .sbar{display:flex;align-items:center;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--border);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px))}
+ .sbar .price{margin:0;padding:0;flex:1}
+ .sbar button{border-radius:10px;padding:11px 14px;font:600 .88rem inherit;font-family:inherit;cursor:pointer;border:1.5px solid var(--accent);background:transparent;color:var(--accent)}
+ .sbar .buy{background:var(--accent);color:#fff}
+ .pinfo{padding:18px}.pinfo .row{display:none}
+ #pdp:not([hidden]){padding-bottom:84px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:760px){.pgrid{grid-template-columns:1fr}}
+@media(max-width:640px){.nav nav{display:none}.btn.ghost{margin:10px 0 0}}
+.vframe{width:min(300px,100%);aspect-ratio:9/16;border:6px solid var(--text);border-radius:24px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;place-items:center;z-index:70;padding:16px}.modal.on{display:grid}
+.mbox{background:var(--surface);border-radius:20px;padding:24px;width:min(420px,100%);position:relative;max-height:90vh;overflow:auto}
+.mbox h3{margin:0 0 4px}.mbox input{width:100%;padding:12px 14px;margin:6px 0;border:1.5px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);font:inherit}
+.mbox .x{position:absolute;top:8px;right:12px}.err{color:#c92a2a;font-size:.85rem;min-height:1.3em}
+.dl{display:block;margin:8px 0;padding:12px 14px;border-radius:12px;background:var(--bg);border:1px solid var(--border);font-weight:600;word-break:break-word}
+
+/* ===== Mobile friendly ===== */
+*{-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{overflow-x:clip}
+button,a,.card{touch-action:manipulation}
+.burger{display:none;background:none;border:1.5px solid var(--border);color:var(--text);border-radius:10px;width:44px;height:44px;font-size:1.3rem;cursor:pointer}
+@media(hover:none){.card[data-go]:hover{transform:none;box-shadow:var(--shadow)}.btn:hover,.th2:hover{transform:none}}
+@media(max-width:640px){
+ .wrap{padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+ .nav{height:58px;gap:8px}.logo{font-size:1.15rem}
+ .burger{display:inline-grid;place-items:center;order:-1}
+ header.open .nav nav{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow);padding:4px 18px 10px}
+ header.open .nav nav a{padding:14px 2px;font-size:1rem;color:var(--text);border-bottom:1px solid var(--border)}
+ header.open .nav nav a:last-child{border:0}
+ .cartbtn{height:44px;padding:0 14px}.ct{display:none}
+ .hero{padding:34px 0 26px}.hero h1{font-size:2rem;letter-spacing:-.5px}.hero p{font-size:.95rem;margin-bottom:20px}
+ .hero .btn{display:block;width:100%;margin:0 0 10px;text-align:center}.hero .btn.ghost{margin:0}
+ .trust{grid-template-columns:1fr 1fr;gap:8px;margin-top:24px}.trust div{font-size:.78rem;padding:10px;justify-content:flex-start}
+ section{padding:22px 0}h2{font-size:1.35rem}.sub{font-size:.9rem}
+ .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 -14px 14px;padding:0 14px 6px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+ .chip{flex:none;padding:10px 16px}
+ .grid{grid-template-columns:1fr 1fr;gap:12px}
+ .cover,.card:hover .cover{font-size:3.2rem}
+ .off,.cnt{font-size:.66rem;padding:2px 7px}.off{top:8px;left:8px}.cnt{bottom:8px;right:8px}
+ .body{padding:10px 10px 12px;gap:3px}.body h3{font-size:.86rem}.body p{display:none}.cat{font-size:.66rem}
+ .price b{font-size:1.1rem}.price s{font-size:.78rem}
+ .row{flex-direction:column;gap:6px}.row button{min-height:42px;padding:10px 6px;font-size:.82rem}
+ .back{margin:14px 0 10px}.pgrid{gap:18px}.mainpic{border-radius:18px}
+ .thumbs{gap:8px}.th2{flex:1;width:auto}
+ .pinfo h1{font-size:1.45rem}.pinfo ul{gap:6px}.pinfo li{font-size:.78rem}.pinfo .price b{font-size:1.7rem}
+ .vwrap{padding:14px 0}.vwrap video,.reel,.vframe{width:min(260px,78%)}
+ .drawer{width:100%;border-radius:0}.it .x{width:44px;height:44px}
+ .modal{place-items:end center;padding:0}
+ .mbox{width:100%;border-radius:22px 22px 0 0;max-height:92dvh;padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px))}
+ .mbox input{padding:14px;font-size:16px}
+ .toast{max-width:calc(100% - 28px);white-space:normal;text-align:center}
+ footer{font-size:.78rem}
+}
+@media(max-width:360px){.pinfo ul{grid-template-columns:1fr}.hero h1{font-size:1.75rem}}
+</style>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+<script src="/config.js"></script>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a href="#top" class="logo">Qxz<span>Store</span></a>
+  <button class="burger" aria-label="Menu" onclick="this.closest('header').classList.toggle('open')">☰</button>
+  <nav onclick="this.closest('header').classList.remove('open')"><a href="#shop">Shop</a><a href="#how">How it works</a><a href="#faq">FAQ</a></nav>
+  <button class="cartbtn" id="openCart">🛒 <span class="ct">Cart</span> <b id="cnt">0</b></button>
+</div></header>
+
+<main id="top">
+<div class="wrap">
+  <div class="hero">
+    <span class="pill">✨ Launch offer · up to 80% off</span>
+    <h1>Ready-to-post <em>AI reels bundles</em> for creators</h1>
+    <p>Pick a bundle, add your audio, upload. Vertical 1080p reels for Instagram, YouTube Shorts and Facebook, with instant download.</p>
+    <a href="#shop" class="btn">Browse bundles</a><a href="#how" class="btn ghost">How it works</a>
+  </div>
+  <div class="trust">
+    <div>⚡ Instant digital delivery</div><div>🎞️ 1080p vertical format</div><div>🚫 No watermarks</div><div>💬 WhatsApp support</div>
+  </div>
+</div>
+
+<section id="shop"><div class="wrap">
+  <h2>Our bundles</h2><p class="sub">Choose a niche and start posting today.</p>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2>How it works</h2><p class="sub">Three steps from checkout to your next post.</p>
+  <div class="steps">
+    <div class="step"><i>🛒</i><h3>1. Choose &amp; pay</h3><p>Add a bundle to your cart and check out securely.</p></div>
+    <div class="step"><i>📥</i><h3>2. Download</h3><p>Get your download link right after payment.</p></div>
+    <div class="step"><i>🚀</i><h3>3. Add audio &amp; post</h3><p>Pick a clip, add trending audio, and upload.</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2>FAQ</h2><p class="sub">Quick answers before you buy.</p>
+  <details><summary>How do I receive the files?</summary><p>You get a download link by email and on the order page right after payment.</p></details>
+  <details><summary>Can I use the reels on monetised pages?</summary><p>Yes. Add your own audio and branding, then post on your pages. Check each bundle’s licence note for details.</p></details>
+  <details><summary>What if I face a problem?</summary><p>Message us on WhatsApp and we’ll help you quickly.</p></details>
+</div></section>
+</main>
+<main id="pdp" hidden></main>
+
+<footer><div class="wrap">© 2026 Qxz Store · Digital products store · shop@yourdomain.com · +91 00000 00000</div></footer>
+
+<div class="modal" id="co"><div class="mbox">
+  <button class="x" id="coX" aria-label="Close">×</button>
+  <h3>Almost there</h3><p class="sub">Enter your details. Your download link appears right after payment.</p>
+  <input id="cName" placeholder="Full name" autocomplete="name">
+  <input id="cEmail" type="email" placeholder="Email" autocomplete="email">
+  <input id="cPhone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" autocomplete="tel">
+  <div class="err" id="cErr"></div>
+  <button class="btn full" id="payBtn">Pay</button>
+</div></div>
+<div class="modal" id="res"><div class="mbox" id="resBox"></div></div>
+<div class="toast" id="toast" role="status"></div>
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh"><h3>Your cart</h3><button class="x" id="closeCart" aria-label="Close">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="tot"><span>Total</span><span id="total">₹0</span></div>
+  <button class="btn full" id="checkout">Pay securely</button>
+</aside>
+
+<script>
+let P=[];
+firebase.initializeApp(firebaseConfig);
+const fdb=firebase.firestore();
+async function loadProducts(){
+  const snap=await fdb.collection('products').where('published','==',true).get();
+  P=snap.docs.map(x=>{const d=x.data();return{id:+x.id,n:d.name,c:d.category||'Other',e:d.emoji||'🎬',g:d.gradient||'#f59f00,#e8590c',
+    o:d.oldPrice||d.price,p:d.price,k:d.countLabel||'',d:d.description||'',video:d.videoUrl||'',imgs:(d.images||[]).filter(Boolean),
+    t:d.createdAt?d.createdAt.seconds:0}}).sort((a,b)=>b.t-a.t);
+}
+const $=s=>document.querySelector(s);
+const inr=n=>'₹'+n;
+let cart=[],cat='All';
+try{cart=JSON.parse(localStorage.getItem('rn_cart')||'[]')||[]}catch(e){cart=[]}
+const save=()=>{try{localStorage.setItem('rn_cart',JSON.stringify(cart))}catch(e){}};
+let cats=['All'];
+
+function chips(){
+  $('#chips').innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" data-cat="${c}">${c}</button>`).join('');
+}
+function grid(list=P.filter(p=>cat==='All'||p.c===cat),el=$('#grid'),btns=true){
+  el.innerHTML=list.map(p=>`<article class="card" data-go="${p.id}" tabindex="0">
+    <div class="cover" style="background:${p.imgs[0]?`center/cover url('${p.imgs[0]}')`:`linear-gradient(135deg,${p.g})`}">${p.imgs[0]?'':p.e}
+      <span class="off">-${Math.round((1-p.p/p.o)*100)}%</span><span class="cnt">${p.k}</span></div>
+    <div class="body"><span class="cat">${p.c}</span><h3>${p.n}</h3><p>${p.d}</p>
+      <div class="price"><b>${inr(p.p)}</b><s>${inr(p.o)}</s></div>
+      ${btns?`<div class="row"><button data-add="${p.id}">Add to cart</button><button class="buy" data-buy="${p.id}">Buy now</button></div>`:''}
+    </div></article>`).join('');
+}
+function renderCart(){
+  const items=cart.map(id=>P.find(p=>p.id===id));
+  $('#cnt').textContent=items.length;
+  $('#items').innerHTML=items.length?items.map(p=>`<div class="it"><div class="th" style="background:linear-gradient(135deg,${p.g})">${p.e}</div>
+    <div>${p.n}<small>${inr(p.p)}</small></div><button class="x" data-rm="${p.id}" aria-label="Remove">×</button></div>`).join(''):'<div class="empty">Your cart is empty.</div>';
+  const t=items.reduce((s,p)=>s+p.p,0);
+  $('#total').textContent=inr(t);
+  $('#checkout').style.opacity=items.length?1:.5;
+}
+function open_(v){$('#drawer').classList.toggle('on',v);$('#shade').classList.toggle('on',v);document.body.style.overflow=v?'hidden':''}
+function add(id){
+  const fresh=!cart.includes(id);
+  if(fresh){cart.push(id);save();renderCart();const b=$('#cnt');b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump')}
+  return fresh;
+}
+let tt;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1800)}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-cat],[data-add],[data-buy],[data-rm],[data-thumb],[data-play]');
+  if(!t){const c=e.target.closest('[data-go]');if(c){if(!$('#top').hidden)lastY=scrollY;location.hash='product-'+c.dataset.go}return}
+  if(t.dataset.cat){cat=t.dataset.cat;chips();grid()}
+  else if(t.dataset.add){toast(add(+t.dataset.add)?'Added to cart ✓':'Already in your cart')}
+  else if(t.dataset.buy){add(+t.dataset.buy);open_(true)}
+  else if(t.dataset.rm){cart=cart.filter(i=>i!==+t.dataset.rm);save();renderCart()}
+  else if(t.dataset.thumb){setPhoto(+t.dataset.thumb)}
+  else if(t.dataset.play){const r=document.querySelector('.reel');r.classList.toggle('paused');t.textContent=r.classList.contains('paused')?'▶':'⏸'}
+});
+$('#openCart').onclick=()=>open_(true);
+$('#closeCart').onclick=()=>open_(false);
+$('#shade').onclick=()=>open_(false);
+let dev;
+try{dev=localStorage.getItem('qxz_dev');if(!dev){dev=crypto.randomUUID();localStorage.setItem('qxz_dev',dev)}}catch(e){dev=dev||crypto.randomUUID()}
+const total=()=>cart.reduce((t,id)=>t+P.find(p=>p.id===id).p,0);
+$('#checkout').onclick=()=>{
+  if(!cart.length)return toast('Your cart is empty');
+  open_(false);$('#payBtn').textContent='Pay '+inr(total());$('#payBtn').disabled=false;$('#co').classList.add('on');
+};
+$('#coX').onclick=()=>$('#co').classList.remove('on');
+$('#payBtn').onclick=async()=>{
+  const name=$('#cName').value.trim(),email=$('#cEmail').value.trim(),phone=$('#cPhone').value.replace(/\D/g,'').slice(-10);
+  const err=m=>{$('#cErr').textContent=m};
+  if(name.length<2)return err('Please enter your name');
+  if(!/^\S+@\S+\.\S+$/.test(email))return err('Please enter a valid email');
+  if(phone.length!==10)return err('Please enter a 10-digit mobile number');
+  err('');const b=$('#payBtn'),label='Pay '+inr(total());b.disabled=true;b.textContent='Please wait…';
+  try{
+    const r=await fetch('/api/createOrder',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone,items:cart,deviceToken:dev})});
+    const d=await r.json();
+    if(!r.ok||!d.payment_session_id)throw new Error(d.error||'Could not start payment');
+    await Cashfree({mode:d.mode||'production'}).checkout({paymentSessionId:d.payment_session_id,redirectTarget:'_self'});
+  }catch(e){err(e.message);b.disabled=false;b.textContent=label}
+};
+async function handleReturn(){
+  const oid=new URLSearchParams(location.search).get('order_id');
+  if(!oid)return;
+  const box=$('#resBox');$('#res').classList.add('on');box.innerHTML='<h3>Checking your payment…</h3>';
+  try{
+    const r=await fetch(`/api/verifyOrder?order_id=${encodeURIComponent(oid)}&device_token=${encodeURIComponent(dev)}`);
+    const d=await r.json();
+    if(d.status==='PAID'){
+      cart=[];save();renderCart();
+      box.innerHTML=`<h3>Payment successful 🎉</h3><p class="sub">Your downloads are ready:</p>${d.items.map(i=>`<a class="dl" href="${i.url}" target="_blank" rel="noopener">⬇ ${i.name}</a>`).join('')}<p class="sub">Order ID: ${oid}. Keep it for support.</p>`;
+    }else box.innerHTML=`<h3>${d.status==='ACTIVE'?'Payment pending':'Payment not completed'}</h3><p class="sub">${d.error||'If money was deducted, contact support with order ID '+oid}</p>`;
+  }catch(e){box.innerHTML='<h3>Something went wrong</h3><p class="sub">Please contact support with your order ID.</p>'}
+  box.insertAdjacentHTML('beforeend','<button class="btn full" id="resX">Continue shopping</button>');
+  $('#resX').onclick=()=>{$('#res').classList.remove('on');history.replaceState(null,'',location.pathname)};
+}
+let cur=null,lastY=0;
+const rev=g=>g.split(',').reverse().join(',');
+function pic(p,i){
+  if(p.imgs[i])return `<div class="pic"><img src="${p.imgs[i]}" alt="${p.n}" style="width:100%;height:100%;object-fit:cover"></div>`;
+  const bg=i===1?rev(p.g):p.g;
+  const inner=i===0?`<span class="big">${p.e}</span>`
+    :i===1?`<span class="mos">${Array(9).fill(`<span>${p.e}</span>`).join('')}</span>`
+    :`<span class="info"><b>${p.k}</b>HD 1080p vertical<br>No watermark<br>Instant download</span>`;
+  return `<div class="pic" style="background:linear-gradient(135deg,${bg})">${inner}</div>`;
+}
+function setPhoto(i){
+  $('#mainpic').innerHTML=pic(cur,i);
+  document.querySelectorAll('.th2').forEach((b,k)=>b.classList.toggle('on',k===i));
+}
+function vid(p){
+  const yt=p.video&&p.video.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
+  if(yt)return `<iframe class="vframe" src="https://www.youtube.com/embed/${yt[1]}" allowfullscreen loading="lazy"></iframe>`;
+  if(p.video)return `<video controls playsinline preload="metadata" src="${p.video}"></video>`;
+  const [a,b]=p.g.split(',');
+  return `<div class="reel" style="--g1:${a};--g2:${b}"><span class="tag">Preview</span><span class="big">${p.e}</span><button class="pl" data-play="1" aria-label="Play or pause">⏸</button><div class="bar"><i></i></div></div>`;
+}
+function showP(p){
+  cur=p;
+  const i=P.indexOf(p),more=[1,2,3,4].map(k=>P[(i+k)%P.length]);
+  $('#pdp').innerHTML=`<div class="wrap">
+   <a href="#shop" class="back">← All bundles</a>
+   <div class="pgrid">
+    <div><div class="mainpic" id="mainpic"></div>
+     <div class="thumbs">${Array.from({length:p.imgs.length||3},(_,k)=>k).map(k=>`<button class="th2" data-thumb="${k}" aria-label="Photo ${k+1}">${pic(p,k)}</button>`).join('')}</div></div>
+    <div class="pinfo"><span class="cat">${p.c}</span><h1>${p.n}</h1><p>${p.d}</p>
+     <div class="price"><b>${inr(p.p)}</b><s>${inr(p.o)}</s><span class="pill">Save ${Math.round((1-p.p/p.o)*100)}%</span></div>
+     <button class="btn full buybtn" data-buy="${p.id}">⚡ Buy now</button>
+     <ul><li>✔ ${p.k}, ready to post</li><li>✔ 1080p vertical HD</li><li>✔ No watermark</li><li>✔ Instant download</li></ul>
+     <div class="row"><button data-add="${p.id}">Add to cart</button><button class="buy" data-buy="${p.id}">Buy now</button></div></div>
+   </div>
+   <section><h2>Preview video</h2><p class="sub">A quick look at the style you will get.</p><div class="vwrap">${vid(p)}</div></section>
+   <section><h2>Explore our more products</h2><p class="sub">More bundles you may like.</p><div class="grid" id="more"></div></section>
+  </div>
+  <div class="sbar"><div class="price"><b>${inr(p.p)}</b><s>${inr(p.o)}</s></div><button data-add="${p.id}">Add</button><button class="buy" data-buy="${p.id}">Buy now</button></div>`;
+  setPhoto(0);grid(more,$('#more'),false);
+}
+function route(){
+  const m=location.hash.match(/^#product-(\d+)$/),p=m&&P.find(x=>x.id===+m[1]);
+  $('#top').hidden=!!p;$('#pdp').hidden=!p;
+  if(p){showP(p);document.title=p.n+' – Qxz Store';window.scrollTo(0,0)}
+  else{
+    document.title='Qxz Store – AI Reels Bundles Store';
+    const el=location.hash.length>1&&document.getElementById(location.hash.slice(1));
+    if(el)el.scrollIntoView();else window.scrollTo(0,lastY);
+  }
+}
+window.addEventListener('hashchange',route);
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')open_(false);
+  if(e.key==='Enter'&&e.target.matches&&e.target.matches('.card[data-go]')){if(!$('#top').hidden)lastY=scrollY;location.hash='product-'+e.target.dataset.go}
+});
+loadProducts().then(()=>{
+  cats=['All',...new Set(P.map(p=>p.c))];
+  cart=cart.filter(i=>P.some(p=>p.id===i));
+  chips();grid();renderCart();route();handleReturn();
+  if(!P.length)$('#grid').innerHTML='<p class="sub">New products coming soon.</p>';
+}).catch(()=>{$('#grid').innerHTML='<p class="sub">Could not load products. Please refresh.</p>'});
+</script>
+</body>
+</html>
