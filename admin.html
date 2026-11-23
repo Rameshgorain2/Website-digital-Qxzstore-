@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Admin · Qxz Store</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="/config.js"></script>
+<style>
+:root{--bg:#fff8f1;--s:#fff;--t:#1f1612;--m:#6f625a;--a:#e8590c;--b:#f0e1d3}
+@media(prefers-color-scheme:dark){:root{--bg:#16110e;--s:#211a16;--t:#f6ece4;--m:#b3a499;--b:#34291f}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--t);line-height:1.5}
+.w{max-width:900px;margin:0 auto;padding:18px}
+.card{background:var(--s);border:1px solid var(--b);border-radius:16px;padding:18px;margin-bottom:16px}
+h1,h2{margin:0 0 12px}h2{font-size:1.1rem}
+label{display:block;font-size:.8rem;color:var(--m);margin:10px 0 3px;font-weight:600}
+input,textarea,select{width:100%;padding:10px 12px;border:1.5px solid var(--b);border-radius:10px;background:var(--bg);color:var(--t);font:inherit}
+textarea{min-height:70px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.g2,.g3{grid-template-columns:1fr}}
+button{background:var(--a);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:600 .9rem inherit;cursor:pointer}
+button.alt{background:transparent;color:var(--a);border:1.5px solid var(--a)}button.del{background:#c92a2a}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:10px}
+.row{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--b)}
+.row:last-child{border:0}.row .i{flex:1;min-width:0}.row small{color:var(--m);display:block}
+.th{width:48px;height:48px;border-radius:10px;background:var(--bg) center/cover;display:grid;place-items:center;font-size:1.5rem;flex:none}
+.tag{font-size:.7rem;padding:2px 8px;border-radius:99px;background:var(--b)}
+.msg{font-size:.85rem;color:var(--a);min-height:1.3em;margin-top:8px}
+.hint{font-size:.76rem;color:var(--m);margin-top:3px}
+</style>
+</head>
+<body>
+<div class="w" id="login" hidden>
+  <div class="card" style="max-width:380px;margin:60px auto">
+    <h1>Admin login</h1>
+    <label>Email</label><input id="em" type="email" autocomplete="username">
+    <label>Password</label><input id="pw" type="password" autocomplete="current-password">
+    <div class="msg" id="lerr"></div>
+    <button id="in" style="width:100%;margin-top:6px">Login</button>
+  </div>
+</div>
+
+<div class="w" id="app" hidden>
+  <div class="bar"><h1>Qxz Store · Admin</h1><div><a href="/" target="_blank" style="color:var(--a);margin-right:12px">View store</a><button class="alt" id="out">Logout</button></div></div>
+
+  <div class="card">
+    <h2 id="ft">Add new product</h2>
+    <div class="g2"><div><label>Product name *</label><input id="n"></div>
+    <div><label>Category</label><input id="c" placeholder="Devotional, Funny, Food…"></div></div>
+    <div class="g3"><div><label>Price (₹) *</label><input id="p" type="number" min="1"></div>
+    <div><label>Old price (₹)</label><input id="o" type="number" min="1"></div>
+    <div><label>Count label</label><input id="k" placeholder="600+ reels"></div></div>
+    <label>Short description</label><textarea id="d"></textarea>
+    <div class="g2"><div><label>Emoji (fallback cover)</label><input id="e" placeholder="🎬"></div>
+    <div><label>Gradient (2 colours)</label><input id="g" placeholder="#f59f00,#e8590c"></div></div>
+
+    <label>Photos (up to 3): paste a URL or upload</label>
+    <div class="g3">
+      <div><input id="i1" placeholder="Photo 1 URL"><input type="file" accept="image/*" data-to="i1"></div>
+      <div><input id="i2" placeholder="Photo 2 URL"><input type="file" accept="image/*" data-to="i2"></div>
+      <div><input id="i3" placeholder="Photo 3 URL"><input type="file" accept="image/*" data-to="i3"></div>
+    </div>
+    <label>Preview video: mp4 URL, YouTube link, or upload (max 100 MB)</label>
+    <input id="v" placeholder="https://…"><input type="file" accept="video/*" data-to="v">
+    <label>Download link (PRIVATE, shown only after payment)</label>
+    <input id="dl" placeholder="Google Drive / Mega / R2 link">
+    <div class="hint">This link is saved in a locked collection. Customers never see it before paying.</div>
+    <label style="display:flex;gap:8px;align-items:center"><input id="pub" type="checkbox" checked style="width:auto"> Published (visible in store)</label>
+    <div class="msg" id="st"></div>
+    <button id="save">Save product</button> <button class="alt" id="clr">Clear</button>
+  </div>
+
+  <div class="card"><h2>Products</h2><div id="plist">Loading…</div></div>
+  <div class="card"><h2>Latest orders</h2><div id="olist">Loading…</div></div>
+</div>
+
+<script>
+// Free uploads via Cloudinary: create an UNSIGNED upload preset, then fill these two
+const CLOUD='YOUR_CLOUD_NAME', PRESET='YOUR_UNSIGNED_PRESET';
+
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(), db=firebase.firestore(), $=s=>document.querySelector(s);
+let editing=null, products=[];
+const F=['n','c','p','o','k','d','e','g','i1','i2','i3','v','dl'];
+const v=id=>$('#'+id).value.trim();
+const say=(m,el='#st')=>$(el).textContent=m;
+
+auth.onAuthStateChanged(u=>{
+  $('#login').hidden=!!u; $('#app').hidden=!u;
+  if(u){loadProducts();loadOrders()}
+});
+$('#in').onclick=()=>auth.signInWithEmailAndPassword($('#em').value,$('#pw').value).catch(e=>say(e.message,'#lerr'));
+$('#out').onclick=()=>auth.signOut();
+
+// Upload to Cloudinary (images + videos)
+document.addEventListener('change',async e=>{
+  const f=e.target.files&&e.target.files[0], to=e.target.dataset&&e.target.dataset.to;
+  if(!f||!to)return;
+  if(CLOUD.startsWith('YOUR_'))return say('Set CLOUD and PRESET at the top of admin.html first (or paste a URL instead).');
+  say('Uploading… please wait');
+  try{
+    const fd=new FormData();fd.append('file',f);fd.append('upload_preset',PRESET);
+    const r=await fetch(`https://api.cloudinary.com/v1_1/${CLOUD}/auto/upload`,{method:'POST',body:fd});
+    const d=await r.json();
+    if(!d.secure_url)throw new Error((d.error&&d.error.message)||'Upload failed');
+    $('#'+to).value=d.secure_url;say('Uploaded ✓');
+  }catch(err){say(err.message)}
+  e.target.value='';
+});
+
+function clearForm(){editing=null;F.forEach(f=>$('#'+f).value='');$('#pub').checked=true;$('#ft').textContent='Add new product';say('')}
+$('#clr').onclick=clearForm;
+
+$('#save').onclick=async()=>{
+  const price=+v('p');
+  if(!v('n')||!(price>=1))return say('Name and a price of at least ₹1 are required');
+  const id=editing||Date.now();
+  const data={id,name:v('n'),category:v('c')||'Other',price,oldPrice:+v('o')||price,countLabel:v('k'),description:v('d'),
+    emoji:v('e')||'🎬',gradient:v('g')||'#f59f00,#e8590c',images:[v('i1'),v('i2'),v('i3')].filter(Boolean),
+    videoUrl:v('v'),published:$('#pub').checked};
+  try{
+    if(!editing)data.createdAt=firebase.firestore.FieldValue.serverTimestamp();
+    await db.collection('products').doc(String(id)).set(data,{merge:true});
+    await db.collection('private').doc(String(id)).set({downloadUrl:v('dl')},{merge:true});
+    clearForm();say('Saved ✓');loadProducts();
+  }catch(e){say(e.code==='permission-denied'?'Permission denied. Check the admin UID in Firestore rules.':e.message)}
+};
+
+async function loadProducts(){
+  const s=await db.collection('products').get();
+  products=s.docs.map(d=>d.data()).sort((a,b)=>b.id-a.id);
+  $('#plist').innerHTML=products.length?products.map(p=>`<div class="row">
+    <div class="th" style="${p.images&&p.images[0]?`background-image:url('${p.images[0]}')`:''}">${p.images&&p.images[0]?'':p.emoji}</div>
+    <div class="i"><b>${p.name}</b> <span class="tag">${p.published?'Live':'Hidden'}</span><small>${p.category} · ₹${p.price}</small></div>
+    <button class="alt" data-edit="${p.id}">Edit</button><button class="del" data-del="${p.id}">Delete</button></div>`).join(''):'No products yet. Add your first one above.';
+}
+document.addEventListener('click',async e=>{
+  const ed=e.target.dataset.edit, dl=e.target.dataset.del;
+  if(ed){
+    const p=products.find(x=>x.id==ed);editing=p.id;
+    const m={n:p.name,c:p.category,p:p.price,o:p.oldPrice,k:p.countLabel,d:p.description,e:p.emoji,g:p.gradient,v:p.videoUrl};
+    Object.entries(m).forEach(([k,val])=>$('#'+k).value=val||'');
+    [1,2,3].forEach(i=>$('#i'+i).value=(p.images||[])[i-1]||'');
+    $('#pub').checked=!!p.published;$('#ft').textContent='Edit product';
+    const s=await db.collection('private').doc(String(ed)).get();$('#dl').value=s.exists?s.data().downloadUrl||'':'';
+    scrollTo({top:0,behavior:'smooth'});
+  }
+  if(dl&&confirm('Delete this product?')){
+    await db.collection('products').doc(dl).delete();await db.collection('private').doc(dl).delete();loadProducts();
+  }
+});
+
+async function loadOrders(){
+  try{
+    const s=await db.collection('orders').orderBy('createdAt','desc').limit(50).get();
+    $('#olist').innerHTML=s.docs.length?s.docs.map(d=>{const o=d.data();
+      return `<div class="row"><div class="i"><b>₹${o.amount}</b> <span class="tag">${o.status}</span>
+      <small>${o.name} · ${o.email} · ${o.phone}</small><small>${o.items.map(i=>i.name).join(', ')}</small></div>
+      <small>${o.createdAt?o.createdAt.toDate().toLocaleString():''}</small></div>`}).join(''):'No orders yet.';
+  }catch(e){$('#olist').textContent=e.message}
+}
+</script>
+</body>
+</html>
